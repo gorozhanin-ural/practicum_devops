@@ -1,0 +1,4 @@
+--- 
+# vars file for default_packages
+packages_to_install:
+  - nginx

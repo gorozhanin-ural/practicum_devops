@@ -1,0 +1,19 @@
+---
+# tasks file for default_packages
+
+- name: Обновление кэша
+  apt:
+    update_cache: yes
+
+- name: Установка программ #Имя задачи 
+  apt: #Используемый модуль
+    name: "{{ item }}" #Имя пакета из цикла
+    state: present #Параметр действия. present - установить, absent - удалить
+  loop:
+    - "{{ packages_to_install }}" #Цикл будет перебирать все значения из переменной "packages"
+
+- name: Подмена конфига
+  ansible.builtin.template:
+    src: default.j2
+    dest: /etc/nginx/sites-available/default
+  notify: "Nginx Reloader" 

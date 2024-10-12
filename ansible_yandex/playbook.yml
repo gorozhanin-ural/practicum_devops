@@ -1,0 +1,20 @@
+- name: Установка стандартных пакетов
+  hosts: all
+  roles:
+    - role: default_packages
+  tags:
+    - install_packages
+
+- name: Установка отдающего Nginx
+  hosts: nginx_server
+  roles:
+    - role: nginx_server
+  tags:
+    - nginx_server
+
+- name: Установка проксирующего Nginx
+  hosts: nginx_proxy
+  roles:
+    - role: nginx_proxy
+  tags:
+    - nginx_proxy
